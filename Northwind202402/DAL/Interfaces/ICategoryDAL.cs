@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface ICategory
+    public interface ICategoryDAL
     {
 
         bool Add(Category category);
