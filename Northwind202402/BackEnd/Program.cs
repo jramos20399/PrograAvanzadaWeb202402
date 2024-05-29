@@ -19,6 +19,7 @@ builder.Services.AddDbContext<NorthWindContext>();
 
 builder.Services.AddScoped<ICategoryDAL, CategoryDALImpl>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 
 
 
