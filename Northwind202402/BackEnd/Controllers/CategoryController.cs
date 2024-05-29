@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BackEnd.Services.Interfaces;
+using Entities.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +11,53 @@ namespace BackEnd.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+
+        private ICategoryService _categoryService;
+
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            this._categoryService = categoryService;
+        }
+
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Category> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _categoryService.Get();
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Category Get(int id)
         {
-            return "value";
+            return _categoryService.Get(id);
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Category Post([FromBody] Category category)
         {
+            _categoryService.Add(category);
+            return category;
+
         }
 
         // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public Category Put([FromBody] Category category)
         {
+            _categoryService.Update(category);
+            return category;
         }
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Category category = new Category { CategoryId = id };
+            _categoryService.Remove(category);
+
         }
     }
 }
