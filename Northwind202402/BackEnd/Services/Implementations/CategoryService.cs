@@ -50,7 +50,9 @@ namespace BackEnd.Services.Implementations
         {
            
 
-            return _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
+             _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
+            return _unidadDeTrabajo.Complete();
+
         }
 
         public CategoryModel Get(int id)
@@ -72,12 +74,14 @@ namespace BackEnd.Services.Implementations
         public bool Remove(CategoryModel category)
         {
             
-            return _unidadDeTrabajo.CategoryDAL.Remove(Convertir(category));
+             _unidadDeTrabajo.CategoryDAL.Remove(Convertir(category));
+            return _unidadDeTrabajo.Complete();
         }
 
         public bool Update(CategoryModel category)
         {
-            return _unidadDeTrabajo.CategoryDAL.Update(Convertir(category));    
+             _unidadDeTrabajo.CategoryDAL.Update(Convertir(category));
+            return _unidadDeTrabajo.Complete();
         }
     }
 }
