@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{B2C7339B-CA8F-4105-B664-D355F5710B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd", "BackEnd\BackEnd.csproj", "{D987A088-FC46-452B-B3E2-956F16048A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "BackEnd\BackEnd.csproj", "{D987A088-FC46-452B-B3E2-956F16048A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{EDA581DE-7917-48EF-8693-E9BDBDACC4C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D987A088-FC46-452B-B3E2-956F16048A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D987A088-FC46-452B-B3E2-956F16048A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D987A088-FC46-452B-B3E2-956F16048A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA581DE-7917-48EF-8693-E9BDBDACC4C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA581DE-7917-48EF-8693-E9BDBDACC4C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA581DE-7917-48EF-8693-E9BDBDACC4C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA581DE-7917-48EF-8693-E9BDBDACC4C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

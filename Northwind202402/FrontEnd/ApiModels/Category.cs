@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BackEnd.Model
+﻿namespace FrontEnd.ApiModels
 {
-    public class CategoryModel
+    public class Category
     {
+
 
         public int CategoryId { get; set; }
 
-        [Required]
         public string CategoryName { get; set; } = null!;
 
         public string? Description { get; set; }
