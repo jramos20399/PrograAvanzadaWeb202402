@@ -1,4 +1,5 @@
-﻿using FrontEnd.Models;
+﻿using FrontEnd.Helpers.Interfaces;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,18 @@ namespace FrontEnd.Controllers
 {
     public class CategoryController : Controller
     {
+        ICategoryHelper CategoryHelper;
+
+        public CategoryController(ICategoryHelper categoryHelper)
+        {
+            CategoryHelper = categoryHelper;
+        }
+
         // GET: CategoryController
         public ActionResult Index()
         {
-            return View();
+
+            return View(CategoryHelper.GetCategories());
         }
 
         // GET: CategoryController/Details/5
