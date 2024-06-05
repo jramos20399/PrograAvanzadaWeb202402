@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using BackEnd.Model;
+using Entities.Entities;
 
 namespace BackEnd.Services.Interfaces
 {
@@ -6,11 +7,11 @@ namespace BackEnd.Services.Interfaces
     {
 
 
-        bool Add(Category category);
-        bool Remove(Category category);
-        bool Update(Category category);
+        bool Add(CategoryModel category);
+        bool Remove(CategoryModel category);
+        bool Update(CategoryModel category);
 
-        Category Get(int id);
-        IEnumerable<Category> Get();
+        CategoryModel Get(int id);
+        IEnumerable<CategoryModel> Get();
     }
 }

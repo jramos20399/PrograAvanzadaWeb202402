@@ -1,4 +1,5 @@
-﻿using BackEnd.Services.Interfaces;
+﻿using BackEnd.Model;
+using BackEnd.Services.Interfaces;
 using Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -22,21 +23,21 @@ namespace BackEnd.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<CategoryModel> Get()
         {
             return _categoryService.Get();
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public Category Get(int id)
+        public CategoryModel Get(int id)
         {
             return _categoryService.Get(id);
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public Category Post([FromBody] Category category)
+        public CategoryModel Post([FromBody] CategoryModel category)
         {
             _categoryService.Add(category);
             return category;
@@ -45,7 +46,7 @@ namespace BackEnd.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public Category Put([FromBody] Category category)
+        public CategoryModel Put([FromBody] CategoryModel category)
         {
             _categoryService.Update(category);
             return category;
@@ -55,7 +56,7 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Category category = new Category { CategoryId = id };
+            CategoryModel category = new CategoryModel { CategoryId = id };
             _categoryService.Remove(category);
 
         }

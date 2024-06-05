@@ -1,4 +1,5 @@
-﻿using BackEnd.Services.Interfaces;
+﻿using BackEnd.Model;
+using BackEnd.Services.Interfaces;
 using DAL.Interfaces;
 using Entities.Entities;
 
@@ -11,35 +12,72 @@ namespace BackEnd.Services.Implementations
 
         private ICategoryDAL categoryDAL;
 
+        private Category Convertir(CategoryModel category)
+        {
+
+            Category entity = new Category
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                Description = category.Description
+
+            };
+            return entity;
+
+        }
+
+
+        private CategoryModel Convertir(Category category)
+        {
+
+            CategoryModel entity = new CategoryModel
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                Description = category.Description
+
+            };
+            return entity;
+
+        }
         public CategoryService(IUnidadDeTrabajo unidadDeTrabajo)
         {
                 this._unidadDeTrabajo = unidadDeTrabajo;
         }
 
 
-        public bool Add(Category category)
+        public bool Add(CategoryModel category)
         {
-           return _unidadDeTrabajo.CategoryDAL.Add(category);
+           
+
+            return _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
         }
 
-        public Category Get(int id)
+        public CategoryModel Get(int id)
         {
-            return _unidadDeTrabajo.CategoryDAL.Get(id);
+            return Convertir(_unidadDeTrabajo.CategoryDAL.Get(id));
         }
 
-        public IEnumerable<Category> Get()
+        public IEnumerable<CategoryModel> Get()
         {
-            return _unidadDeTrabajo.CategoryDAL.GetAll();
+            var lista= _unidadDeTrabajo.CategoryDAL.GetAll();
+            List<CategoryModel> categories = new List<CategoryModel>();
+            foreach (var item in lista)
+            {
+                categories.Add(Convertir(item));
+            }
+            return categories;
         }
 
-        public bool Remove(Category category)
+        public bool Remove(CategoryModel category)
         {
-            return _unidadDeTrabajo.CategoryDAL.Remove(category);
+            
+            return _unidadDeTrabajo.CategoryDAL.Remove(Convertir(category));
         }
 
-        public bool Update(Category category)
+        public bool Update(CategoryModel category)
         {
-            return _unidadDeTrabajo.CategoryDAL.Update(category);    
+            return _unidadDeTrabajo.CategoryDAL.Update(Convertir(category));    
         }
     }
 }
