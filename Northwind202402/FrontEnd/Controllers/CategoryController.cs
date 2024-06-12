@@ -24,7 +24,8 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CategoryViewModel category = CategoryHelper.GetCategory(id);
+            return View(category);
         }
 
         // GET: CategoryController/Create
@@ -40,6 +41,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                _= CategoryHelper.Add(category);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,7 +53,8 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            CategoryViewModel category = CategoryHelper.GetCategory(id);
+            return View(category);
         }
 
         // POST: CategoryController/Edit/5
@@ -61,6 +64,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                _ = CategoryHelper.Update(category);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,16 +76,19 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            CategoryViewModel category = CategoryHelper.GetCategory(id);
+            return View(category);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(CategoryViewModel category)
         {
             try
             {
+                _ = CategoryHelper.Remove(category.CategoryId);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

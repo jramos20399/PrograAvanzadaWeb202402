@@ -15,6 +15,21 @@ namespace FrontEnd.Helpers.Implementations
         }
 
 
+        public CategoryViewModel Add(CategoryViewModel category)
+        {
+            HttpResponseMessage response = ServiceRepository.PostResponse("api/category", Convertir(category));
+
+
+            if (response != null)
+            {
+
+                var content = response.Content.ReadAsStringAsync().Result;
+
+
+            }
+            return category;
+            }
+
         private CategoryViewModel Convertir(Category category)
         {
             return new CategoryViewModel
@@ -24,9 +39,20 @@ namespace FrontEnd.Helpers.Implementations
                 Description = category.Description
             };
         }
-      
 
-       public List<CategoryViewModel> GetCategories()
+
+        private Category Convertir(CategoryViewModel category)
+        {
+            return new Category
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                Description = category.Description
+            };
+        }
+
+
+        public List<CategoryViewModel> GetCategories()
          {
              HttpResponseMessage responseMessage = ServiceRepository.GetResponse("api/category");
             List<Category> resultado = new List<Category>();
@@ -48,5 +74,49 @@ namespace FrontEnd.Helpers.Implementations
             return categories;
 
          }
+
+        public CategoryViewModel GetCategory(int id)
+        {
+            HttpResponseMessage responseMessage = ServiceRepository.GetResponse("api/category/" + id.ToString());
+            Category resultado = new Category();
+            if (responseMessage!=null)
+            {
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                resultado = JsonConvert.DeserializeObject<Category>(content);
+            }
+
+            return Convertir(resultado);
+
+        }
+
+       
+
+        public CategoryViewModel Remove(int id)
+        {
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/category/" + id.ToString());
+            Category resultado = new Category();
+            if (responseMessage != null)
+            {
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                
+            }
+
+            return Convertir(resultado);
+        }
+
+        public CategoryViewModel Update(CategoryViewModel category)
+        {
+            HttpResponseMessage response = ServiceRepository.PutResponse("api/category", Convertir(category));
+
+
+            if (response != null)
+            {
+
+                var content = response.Content.ReadAsStringAsync().Result;
+
+
+            }
+            return category;
+        }
     }
 }
