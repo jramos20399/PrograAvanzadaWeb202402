@@ -12,6 +12,7 @@ namespace DAL.Implementations
     {
         public ICategoryDAL CategoryDAL { get; set; }
         public ISupplierDAL SupplierDAL { get; set; }
+        public IProductDAL ProductDAL { get; set; }
         private NorthWindContext _northWindContext;
 
         public UnidadDeTrabajo(NorthWindContext northWindContext,
