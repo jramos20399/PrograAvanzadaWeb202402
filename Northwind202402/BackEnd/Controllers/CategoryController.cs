@@ -14,18 +14,34 @@ namespace BackEnd.Controllers
     {
 
         private ICategoryService _categoryService;
+        ILogger<CategoryController> _logger;
 
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService,
+               ILogger<CategoryController> logger     )
         {
             this._categoryService = categoryService;
+            this._logger = logger;
         }
 
         // GET: api/<CategoryController>
         [HttpGet]
         public IEnumerable<CategoryModel> Get()
         {
-            return _categoryService.Get();
+            try
+            {
+                _logger.LogDebug("INGRESO A GETALL");
+                return _categoryService.Get();
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+            
+           
+          
         }
 
         // GET api/<CategoryController>/5
