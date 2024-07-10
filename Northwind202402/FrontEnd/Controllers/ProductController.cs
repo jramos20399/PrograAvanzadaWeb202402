@@ -25,6 +25,11 @@ namespace FrontEnd.Controllers
         {
             List<ProductViewModel> lista = ProductHelper.GetAll();
 
+            foreach (var item in lista)
+            {
+                item.Category = CategoryHelper.GetCategory((int)item.CategoryId);
+            }
+
 
             return View(lista);
            
