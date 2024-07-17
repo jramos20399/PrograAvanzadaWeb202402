@@ -3,6 +3,7 @@ using BackEnd.Services.Interfaces;
 using DAL.Implementations;
 using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +15,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+#region ConexionBD
+builder.Services.AddDbContext<NorthWindContext>(options =>
+                options.UseSqlServer
+                                (builder.Configuration.GetConnectionString("DefaultConnection"))
+                                );
+#endregion
+
 #region Serilog
 
-    builder.Logging.ClearProviders();
+builder.Logging.ClearProviders();
     builder.Logging.AddConsole();
     builder.Host.UseSerilog((ctx, lc) =>lc
             .WriteTo.File("logs/logsbackend.txt",rollingInterval: RollingInterval.Day)
