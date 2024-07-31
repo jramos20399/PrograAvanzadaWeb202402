@@ -27,33 +27,37 @@ builder.Services.AddDbContext<NorthWindContext>(options =>
                                 );
 
 builder.Services.AddDbContext<AuthDBContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-
-    );
+                options.UseSqlServer
+                                (builder.Configuration.GetConnectionString("DefaultConnection"))
+                                );
 #endregion
 
 
 
 #region Identity
 builder.Services.AddIdentityCore<IdentityUser>()
-    .AddRoles<IdentityRole>()
-    //.AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("Fide")
-    .AddEntityFrameworkStores<AuthDBContext>()
-    .AddDefaultTokenProviders();
+        .AddRoles<IdentityRole>()
+            .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("fide")
+            .AddEntityFrameworkStores<AuthDBContext>()
+            .AddDefaultTokenProviders();
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.Password.RequiredLength = 3;
+    options.Password.RequiredLength = 5;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
+
 });
+
+
+
+
 #endregion
 
-
 #region JWT
-
 
 
 builder.Services.AddAuthentication(options =>
@@ -80,6 +84,7 @@ builder.Services.AddAuthentication(options =>
 
 
 
+
 #endregion
 
 
@@ -97,6 +102,14 @@ builder.Logging.ClearProviders();
 #endregion
 
 
+
+
+
+
+
+
+
+
 #region DI
 
 builder.Services.AddDbContext<NorthWindContext>();
@@ -109,6 +122,8 @@ builder.Services.AddScoped<ISupplierDAL, SupplierDALImpl>();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductDAL, ProductDALImpl>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 
 #endregion
 
@@ -125,6 +140,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ApiKeyManager>();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,20 @@ using System.Threading.Tasks;
 
 namespace Entities.Entities
 {
-    public class AuthDBContext : IdentityDbContext
+    public class AuthDBContext: IdentityDbContext
     {
-        public AuthDBContext(DbContextOptions<AuthDBContext> options)
-        : base(options)
+        public AuthDBContext(DbContextOptions<AuthDBContext> options): base(options)
         {
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
-            base.OnModelCreating(modelBuilder);
+                
         }
 
-     }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+         
+
+        }
+    }
 }

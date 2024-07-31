@@ -1,6 +1,7 @@
 ﻿using BackEnd.Model;
 using BackEnd.Services.Interfaces;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -25,6 +26,7 @@ namespace BackEnd.Controllers
         }
 
         // GET: api/<CategoryController>
+        [Authorize]
         [HttpGet]
         public IEnumerable<CategoryModel> Get()
         {
