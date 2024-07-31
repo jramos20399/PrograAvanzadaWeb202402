@@ -122,6 +122,8 @@ builder.Services.AddScoped<ISupplierDAL, SupplierDALImpl>();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductDAL, ProductDALImpl>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 
 #endregion
 
