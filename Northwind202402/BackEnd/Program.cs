@@ -21,7 +21,17 @@ builder.Services.AddDbContext<NorthWindContext>(options =>
                 options.UseSqlServer
                                 (builder.Configuration.GetConnectionString("DefaultConnection"))
                                 );
+
+builder.Services.AddDbContext<AuthDBContext>(options =>
+                options.UseSqlServer
+                                (builder.Configuration.GetConnectionString("DefaultConnection"))
+                                );
 #endregion
+
+
+builder.Services.AddAuthentication();
+
+
 
 #region Serilog
 
