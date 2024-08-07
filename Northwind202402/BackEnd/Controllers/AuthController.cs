@@ -31,7 +31,7 @@ namespace BackEnd.Controllers
             LoginModel Usuario = new LoginModel();
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
-
+               
                 var userRoles = await userManager.GetRolesAsync(user);
 
                 var jwtToken = TokenService.CreateToken(user, userRoles.ToList());

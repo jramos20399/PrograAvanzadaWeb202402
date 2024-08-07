@@ -1,10 +1,13 @@
 ﻿using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         ICategoryHelper CategoryHelper;
@@ -17,10 +20,12 @@ namespace FrontEnd.Controllers
         // GET: CategoryController
         public ActionResult Index()
         {
-
+            CategoryHelper.Token = HttpContext.Session.GetString("token");
             return View(CategoryHelper.GetCategories());
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {

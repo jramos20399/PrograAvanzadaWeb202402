@@ -10,5 +10,7 @@ namespace FrontEnd.Helpers.Interfaces
         CategoryViewModel Remove(int id);
         CategoryViewModel Update(CategoryViewModel category);
 
+        string Token { get; set; }
+
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IServiceRepository
     {
-
+        HttpClient Client { get; set; }
 
 
         HttpResponseMessage GetResponse(string url);
